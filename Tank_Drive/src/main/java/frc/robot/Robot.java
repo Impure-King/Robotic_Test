@@ -95,20 +95,30 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    // Just redefine all the motors (except Canspark) to get rid of ``differentialdrive not updated often enough`` error
+    m_LeftFront = new WPI_VictorSPX(2);
+    m_RightFront = new WPI_VictorSPX(1);
+    m_RightBack = new WPI_VictorSPX(0);
+   
+    m_left = new MotorControllerGroup(m_LeftBack, m_LeftFront);
+    m_right = new MotorControllerGroup(m_RightBack, m_RightFront);
+    m_robot = new DifferentialDrive(m_left, m_right);
+
+
     // Resetting the timer:
     m_timer.reset();
     m_timer.start();
     while (m_timer.get() < 3){
       m_robot.tankDrive(0.5, 0.5);
-      setTopVictors(0.5, 0.5);
+      //setTopVictors(0.5, 0.5);
     }
 
     while (m_timer.get() <= 4){
       m_robot.tankDrive(-0.10, -0.1);
-      setTopVictors(-0.10, -0.1);
+      //setTopVictors(-0.10, -0.1);
     }
 
-    setTopVictors(0, 0);
+    //setTopVictors(0, 0);
     m_robot.tankDrive(0,0);
   }
 
