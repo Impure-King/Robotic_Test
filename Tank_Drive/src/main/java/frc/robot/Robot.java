@@ -58,12 +58,6 @@ public class Robot extends TimedRobot {
   // Extra constants:
   private VictorSPXControlMode spxControlMode = VictorSPXControlMode.PercentOutput;
 
-  public void setTopVictors(double left_speed, double right_speed){
-    m_RightFront.set(spxControlMode, right_speed);
-    m_LeftFront.set(spxControlMode, left_speed);
-
-  }
-
   @Override
   public void robotInit() {
     // Starting the initialization:
